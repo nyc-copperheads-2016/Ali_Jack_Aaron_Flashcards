@@ -1,0 +1,8 @@
+<%= @current_card %>
+
+<form method='post' action='/deck/<%= @cards[0].id %>/card/<%= @cards.length %>'>
+  <input type="hidden" name="_method" value="<%= @cards[0].id %>">
+  <input type='button' name='correct' value="correct" />
+  <input type='button' name='attempt' value="incorrect" />
+</form>
+
