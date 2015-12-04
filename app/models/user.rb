@@ -5,5 +5,7 @@ class User < ActiveRecord::Base
 
   validates :password, presence: true
   validates :password, length: { minimum: 6 }
+  has_many :rounds
+  has_many :decks, through: :rounds
 
 end
