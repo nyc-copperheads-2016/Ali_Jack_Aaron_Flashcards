@@ -1,0 +1,16 @@
+
+<h1>Welcome to Flashcards</h1>
+
+<h3> Hi! <%= @user.username %></h3>
+<form method='post' action='/flashcards/logout'>
+  <input type='hidden' name='_method' value='DELETE' />
+  <input class='ui small button inverted blue' type='submit' value='Logout' />
+</form>
+
+<h3>List of decks: </h3>
+<% @decks.each do |deck| %>
+<a href='/deck/<%= deck.id %>/card/<%= @cards.last.id %>'><%= deck.name %></a>
+<% end %>
+
+<a href="/deck/new"><h3>Create a new deck</h3></a>
+
