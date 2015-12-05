@@ -1,12 +1,12 @@
 <h2><%=@card.question %></h2>
 <h2><%=@card.answer %></h2>
 <hr>
-<form method='post' action='/deck/<%= @card.deck_id %>/card/<%= @card.id %>/show_answer'>
+<form method='post' action='/deck/<%= @card.deck_id %>'>
   <input type="hidden" name="_method" value="deck_id[<%= @card.deck_id %>]">
   <input type='submit' name='correct' value="Correct" />
 </form>
 <br>
-<form method='post' action='/deck/<%= @card.deck_id %>/card/<%= @card.id %>/show_answer'>
+<form method='post' action='/deck/<%= @card.deck_id %>'>
   <input type="hidden" name="_method" value="deck_id[<%= @card.id %>]">
   <input type='submit' name='incorrect' value="Incorrect" />
 </form>

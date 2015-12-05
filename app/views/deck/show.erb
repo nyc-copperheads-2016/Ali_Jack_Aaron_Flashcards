@@ -1,6 +1,12 @@
-<%= @current_card %>
 
-<form method='post' action='/deck/<%= @cards[0].id %>/card/<%= @cards.sample.id %>/show_answer'>
-  <input type="hidden" name="_method" value="deck_id[<%= @cards[0].id %>]">
+<h2>List of questions from: <%=@deck.name%></h2>
+
+<% @cards.each do |card| %>
+<p><%=card.question%></p>
+
+<form method='post' action='/deck/<%= card.deck_id %>/card/<%= card.id %>'>
+
   <input type='submit' name='show_answer' value="Show Answer" />
+  <hr>
 </form>
+<%end%>

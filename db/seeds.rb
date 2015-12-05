@@ -2,8 +2,8 @@ deck = Deck.create!(name: Faker::Lorem.word)
 card = []
 5.times do
   card << Card.create!(
-    question: Faker::Lorem.sentence,
-    answer: Faker::Lorem.word
+    question: Faker::Hipster.sentence,
+    answer: Faker::Hipster.word
     )
 end
 p card

@@ -11,23 +11,36 @@ post '/deck/create' do
     end
 end
 
-get '/deck/:deck_id/card/:card_id' do
+get '/deck/:deck_id' do
   @cards = Card.where(deck_id: params[:deck_id])
-  @card_shuffle = @cards.shuffle
-  @current_card = @card_shuffle.shift.question
+  @deck = Deck.find_by(id: params[:deck_id])
+  # p @temp_deck.slice!(params[:card_id])
+  # p params
   erb :'/deck/show'
 end
 
-get '/deck/:deck_id/card/:card_id/show_answer' do
+post '/deck/:deck_id' do
+  @cards = Card.where(deck_id: params[:deck_id])
+  @deck = Deck.find_by(id: params[:deck_id])
+  @temp_deck = @deck.dup
+  p @temp_deck
+  erb :'/deck/show'
+end
+
+get '/deck/:deck_id/card/:card_id' do
   @card = Card.find_by(id: params[:card_id])
   # binding.pry
   erb :'/card/show'
 end
 
-post '/deck/:deck_id/card/:card_id/show_answer' do
+post '/deck/:deck_id/card/:card_id' do
   @round = Round.new(user_id: session[:user_id], deck_id: params[:deck_id])
   @cards = Card.where(deck_id: params[:deck_id])
-  redirect "/deck/#{params[:deck_id]}/card/#{params[:card_id]}/show_answer"
+  if @round.save
+    redirect "/deck/#{params[:deck_id]}/card/#{params[:card_id]}"
+  else
+    redirect "/deck/#{params[:deck_id]}/card/#{params[:card_id]}"
+  end
 end
 
 
