@@ -2,10 +2,12 @@
 <h2>List of questions from: <%=@deck.name%></h2>
 
 <% @cards.each do |card| %>
-<p><%=card.question%></p>
+<% if card.guesses[0].correct? == false && card.id == card.guesses[0].card_id && @play == card.guesses[0].round_id %>
+<%= @play %>
+  <p><%= card.question %></p>
 <form method='post' action='/deck/<%= card.deck_id %>/card/<%= card.id %>'>
-
   <input type='submit' name='show_answer' value="Show Answer" />
   <hr>
 </form>
+<%end%>
 <%end%>
