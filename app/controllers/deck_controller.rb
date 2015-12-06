@@ -51,14 +51,12 @@ get '/deck/:deck_id/play' do
   @round = Round.last
   @guess = Guess.where(round_id: @round.id)
   @counter = 0
-  # binding.pry
   erb :'deck/play'
 end
 
 post '/deck/:deck_id/play' do
   @round = Round.last
   @guess = Guess.find_by(round_id: @round.id, card_id: params[:card_id])
-  # binding.pry
   @round.attempt += 1
   @round.save
   if params[:correct] == "Correct"

@@ -1,9 +1,8 @@
-
 <h2>List of questions from: <%=@deck.name%></h2>
 <a href="/flashcards/index">Back to Home page </a>
 <br>
 <a href="/deck/<%= @deck.id %>">Back to deck</a>
-<h3>If you have answered all the questions, you must relogin to play again </h3>
+<h3>If you have answered all the questions previously, you must relogin to play again </h3>
 Attempts: <%= @round.attempt %>
 <% @cards.each do |card| %>
   <% if card.guesses[0].correct? == false && @guess[@counter].round_id == card.guesses[0].round_id %>

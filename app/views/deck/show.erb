@@ -1,6 +1,5 @@
-
 <h2>List of questions from: <%=@deck.name%></h2>
-
+<a href="/flashcards/index">Back to home </a>
 <% @cards.each do |card| %>
 <p><%=card.question%></p>
 <form method='post' action='/deck/<%= card.deck_id %>/card/<%= card.id %>'>
