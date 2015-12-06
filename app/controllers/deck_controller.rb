@@ -21,14 +21,14 @@ end
 post '/deck/:deck_id' do
   @cards = Card.where(deck_id: params[:deck_id])
   @deck = Deck.find_by(id: params[:deck_id])
-  @round = Round.new(user_id: session[:session_id], deck_id: params[:deck_id])
+  @round = Round.find_or_create_by(user_id: session[:session_id], deck_id: params[:deck_id])
   if @round.save
     @cards.each do |card|
       Guess.find_or_create_by(card_id: card.id, round_id: @round.id)
     end
     redirect "/deck/#{params[:deck_id]}/play"
   else
-    redirect "/deck/#{params[:deck_id]}"
+    redirect "/deck/#{params[:deck_id]}/play"
   end
 end
 
