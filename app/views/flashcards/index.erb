@@ -9,8 +9,9 @@
 
 <h3>List of decks: </h3>
 <% @decks.each do |deck| %>
-<a href='/deck/<%= deck.id %>/card/<%= @cards.last.id %>'><%= deck.name %></a>
-<% end %>
+<a href='/deck/<%= deck.id %>'><%=deck.name%></a>
 
+<% end %>
+<br>
 <a href="/deck/new"><h3>Create a new deck</h3></a>
 
