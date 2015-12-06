@@ -7,5 +7,7 @@ end
 
 delete '/flashcards/logout' do
   session.clear
+  @guess = Guess.all
+  @guess.delete(Guess.all)
   redirect '/'
 end
