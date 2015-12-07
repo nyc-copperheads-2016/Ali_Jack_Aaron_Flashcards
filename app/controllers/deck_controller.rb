@@ -21,10 +21,13 @@ end
 post '/deck/:deck_id' do
   @cards = Card.where(deck_id: params[:deck_id])
   @deck = Deck.find_by(id: params[:deck_id])
-  @round = Round.new(user_id: session[:session_id], deck_id: params[:deck_id])
-  if @round.save
+  @round = Round.all
+  @round = Round.create(user_id: session[:session_id], deck_id: params[:deck_id])
+  # binding.pry
+  if @round.save && @round.attempt <= @cards.count
+    # binding.pry
     @cards.each do |card|
-      Guess.find_or_create_by(card_id: card.id, round_id: @round.id)
+      Guess.create(card_id: card.id, round_id: @round.id)
     end
     redirect "/deck/#{params[:deck_id]}/play"
   else
@@ -40,7 +43,6 @@ get '/deck/:deck_id/card/:card_id' do
 end
 
 post '/deck/:deck_id/card/:card_id' do
-  # @round = Round.new(user_id: session[:session_id], deck_id: params[:deck_id])
   @cards = Card.where(deck_id: params[:deck_id])
   redirect "/deck/#{params[:deck_id]}/card/#{params[:card_id]}"
 end
@@ -58,7 +60,6 @@ end
 post '/deck/:deck_id/play' do
   @round = Round.last
   @guess = Guess.find_by(round_id: @round.id, card_id: params[:card_id])
-  # binding.pry
   @round.attempt += 1
   @round.save
   if params[:correct] == "Correct"

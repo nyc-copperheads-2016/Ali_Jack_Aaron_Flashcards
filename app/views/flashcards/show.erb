@@ -1,0 +1,15 @@
+<h1>Stats for <%= @user.username %> </h1>
+<a href="/flashcards/index">Back to Home</a>
+<% @rounds.each do |round| %>
+<p>Date: <%= round.created_at %>
+  <br>
+  Deck: <%= round.deck_id %>
+  <br>
+  Number of Attempts: <%= round.attempt %>
+  <br>
+  Number of Cards in Deck: <%= @deck.count %>
+  <br>
+  Incorrect tries: <%= round.attempt - @deck.count %>
+
+  </p>
+  <% end %>

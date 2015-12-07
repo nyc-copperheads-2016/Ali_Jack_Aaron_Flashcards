@@ -1,12 +1,11 @@
-
 <h1>Welcome to Flashcards</h1>
 
 <h3> Hi! <%= @user.username %></h3>
-<form method='post' action='/flashcards/logout'>
+<form method='post' action='/flashcards/logout' class="inline">
   <input type='hidden' name='_method' value='DELETE' />
-  <input class='ui small button inverted blue' type='submit' value='Logout' />
+  <input class='ui small button inverted blue inline-buttons' type='submit' value='Logout' />
 </form>
-
+<a href="/flashcards/stats" class="ui small button inverted blue">Stats</a>
 <h3>List of decks: </h3>
 <% @decks.each do |deck| %>
 <form method='post' action='/deck/<%= deck.id %>'>
