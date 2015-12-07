@@ -4,8 +4,9 @@
   <%= error %><br>
   <% end %>
 <% end %>
-<form method='post' action='/sessions/create'>
-  <input type='text' name='user[username]' />
-  <input type='password' name='user[password]' />
-  <input type='submit' />
+<br>
+<form class = "ui input focus" method='post' action='/sessions/create'>
+  <input type='text' name='user[username]' placeholder='Username' />
+  <input type='password' name='user[password]' placeholder='Password' />
+  <input class ='ui medium blue button' type='submit' />
 </form>
