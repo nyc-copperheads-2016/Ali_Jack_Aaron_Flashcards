@@ -9,6 +9,7 @@
 
 <h3>List of decks: </h3>
 <% @decks.each do |deck| %>
+<br>
 <a href='/deck/<%= deck.id %>'><%=deck.name%></a>
 
 <% end %>
