@@ -1,5 +1,7 @@
+require 'bcrypt'
+
 class User < ActiveRecord::Base
-  # Remember to create a migration!
+  include BCrypt
   validates :username, presence: true
   validates :username, length: { minimum: 5 }
 
@@ -7,5 +9,14 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }
   has_many :rounds
   has_many :decks, through: :rounds
+
+  def password
+    @password ||= Password.new(password_hash)
+  end
+
+  def password=(new_password)
+    @password = Password.create(new_password)
+    self.password_hash = @password
+  end
 
 end

@@ -19,6 +19,5 @@ get '/flashcards/stats' do
   unless @rounds.empty?
     @deck = Card.where(deck_id: @rounds[0].deck_id)
   end
-  # binding.pry
   erb :'/flashcards/show'
 end
