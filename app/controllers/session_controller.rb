@@ -13,6 +13,12 @@ get '/sessions/new' do
   erb :'/sessions/new'
 end
 
+# This route belongs in the users_controller.
+# Proper route for creating a User:
+#
+# post '/users'
+# get '/users/:id'
+# get '/users/new'
 post '/sessions/create' do
   user = User.new(params[:user])
   if user.save
